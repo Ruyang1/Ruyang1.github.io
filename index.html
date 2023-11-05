@@ -248,7 +248,11 @@
     <p>报错信息如下：</p>
 <p><img src="/hexo%E9%83%A8%E7%BD%B2%E5%88%B0github%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.assets/image-20231105200454685.png" alt="image-20231105200454685"></p>
 <p>解决方式：</p>
-<p>​	首先可以尝试开启VPN或者关闭VPN，然后再次：”hexo d“，尝试部署到GitHub<br>​	如果上述方法没用，按”WIN+i”—网络和internet—代理—全部选择关闭</p>
+<p>​	方式一：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.proxy </span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
+
+<p>​	方式二：</p>
+<p>​	首先可以尝试关闭VPN，然后再次：”hexo d“，尝试部署到GitHub<br>​	如果上述方法没用，按”WIN+i”—网络和internet—代理—全部选择关闭</p>
 <p><img src="/hexo%E9%83%A8%E7%BD%B2%E5%88%B0github%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.assets/image-20231105200336311.png" alt="image-20231105200336311"></p>
 
     
