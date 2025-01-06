@@ -10,17 +10,19 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="欢迎来到阿阳的博客">
+  <meta name="description" content="司机端：进行身份认证(身份证和驾驶证)、人脸识别模型的操作是通过腾讯云的云服务功能实现。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="乐尚代驾微服务项目">
 <meta property="og:url" content="http://example.com/2024/12/25/%E4%B9%90%E5%B0%9A%E4%BB%A3%E9%A9%BE%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="阿阳的博客">
-<meta property="og:description" content="欢迎来到阿阳的博客">
+<meta property="og:description" content="司机端：进行身份认证(身份证和驾驶证)、人脸识别模型的操作是通过腾讯云的云服务功能实现。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://myfirst-bucket1.oss-cn-beijing.aliyuncs.com/hexo-picture/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-06%20195545.png">
 <meta property="article:published_time" content="2024-12-25T14:22:32.000Z">
-<meta property="article:modified_time" content="2024-12-25T14:22:32.337Z">
+<meta property="article:modified_time" content="2025-01-06T12:01:42.509Z">
 <meta property="article:author" content="阿阳">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://myfirst-bucket1.oss-cn-beijing.aliyuncs.com/hexo-picture/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-06%20195545.png">
   
     <link rel="alternative" href="/atom.xml" title="阿阳的博客" type="application/atom+xml">
   
@@ -233,7 +235,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">2.3k字</span>
     </span>
   </span>
 
@@ -242,7 +244,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">9分</span>
     </span>
   </span>
 </div>
@@ -253,7 +255,174 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <p><strong>司机端</strong>：进行身份认证(身份证和驾驶证)、人脸识别模型的操作是通过腾讯云的云服务功能实现。</p>
+<span id="more"></span>
+
+<h1 id="一、项目介绍"><a href="#一、项目介绍" class="headerlink" title="一、项目介绍"></a>一、项目介绍</h1><h2 id="1-背景和功能"><a href="#1-背景和功能" class="headerlink" title="1.背景和功能"></a>1.背景和功能</h2><p>爱尚代驾是一种新型的出行服务模式，主营业务：商务代驾，长途代驾。其主要的特点是通过线上平台为用户提供代驾服务，伴随着中国家庭汽车保有量的飞速增长，互联网代驾行业驶进了快车道，当前项目就是基于此背景设计出来的。</p>
+<h2 id="2-技术概述："><a href="#2-技术概述：" class="headerlink" title="2.技术概述："></a>2.技术概述：</h2><p>后端技术栈：</p>
+<ul>
+<li>SpringBoot：简化Spring应用的初始搭建以及开发过程</li>
+<li>SpringCloud：基于Spring Boot实现的云原生应用开发工具，SpringCloud使用的技术（Spring Cloud Gateway、Spring Cloud Task、Spring Cloud Feign）</li>
+<li>Spring Boot+SpringCloudAlibaba（Nacos、Sentinel）+OpenFeign+Gateway</li>
+<li>MyBatis-Plus：持久层框架，也依赖于mybatis</li>
+<li>Redis：内存做缓存</li>
+<li>Redission：基于redis的Java驻内存数据网络-框架，操作redis的矿建</li>
+<li>MongoDB：分布式文件存储数据（例如：实时记录司机的位置信息）</li>
+<li>RabbitMQ：消息中间件；大型分布式项目是标配；分布式事务最终一致性</li>
+<li>Seata：分布式数据</li>
+<li>Drools：规则引擎（例如：起步价3公里10元，每多一公里加2元。司机等待时间超过5分钟，额外加5元。）。计算预估费用、取消费用等</li>
+<li>GEO：GPS分区定位计算（例如：计算司机距离客户的路程）</li>
+<li>ThreadPoolExecutor+CompletableFuture：异步编排，线程池来实现异步操作，提高效率</li>
+</ul>
+<p>前端技术栈：</p>
+<ul>
+<li>UniApp</li>
+<li>Vue3全家桶</li>
+<li>TypeScript</li>
+<li>GraceUI</li>
+<li>UniUl</li>
+<li>uniapp-axios-adapter</li>
+</ul>
+<p>云服务：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>云服务名称</th>
+<th>具体用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>对象存储服务（COS）</td>
+<td>存储司机实名认证的身份证和驾驶证照片等隐私图片</td>
+</tr>
+<tr>
+<td>2</td>
+<td>人脸识别（AiFace）</td>
+<td>每天司机接单前的身份核实，并且具备静态活体检功能</td>
+</tr>
+<tr>
+<td>3</td>
+<td>人员库管理（face-lib）</td>
+<td>云端存储司机注册的时候的人脸模型，用于身份比对使用</td>
+</tr>
+<tr>
+<td>4</td>
+<td>数据万象（ci）</td>
+<td>用于监控大家录音文本内容，判断是否包含暴力和色情行为</td>
+</tr>
+<tr>
+<td>5</td>
+<td>OCR证件识别</td>
+<td>用于OCR识别和扫描身份证、驾驶证信息</td>
+</tr>
+<tr>
+<td>6</td>
+<td>微信同声传译插件</td>
+<td>把文字合成语音，播报订单；把录音转换成文本，用于安全监控</td>
+</tr>
+<tr>
+<td>7</td>
+<td>路线规划插件</td>
+<td>用于规划小程序订单显示的路线、司机下班回家的路线。</td>
+</tr>
+<tr>
+<td>8</td>
+<td>地图选点插件</td>
+<td>用于小程序上面的地图选点操作</td>
+</tr>
+<tr>
+<td>9</td>
+<td>腾讯位置服务</td>
+<td>路线规划、定位导航、历程和时间预估</td>
+</tr>
+</tbody></table>
+<h2 id="3-技术框架"><a href="#3-技术框架" class="headerlink" title="3.技术框架"></a>3.技术框架</h2><h2 id="4-业务流程"><a href="#4-业务流程" class="headerlink" title="4.业务流程"></a>4.业务流程</h2><p>乘客端：登录—-选择代驾地址(出发点和终点)—-预览地址距离、费用、时间—-呼叫代驾(生成订单、搜索附近5公里可以接单的司机)—-等待司机接单(15分钟没有司机接单，则取消订单；反之继续下面的操作)—-司乘同显—-订单开始、结束，乘客根据账单进行支付(可能有优惠券)</p>
+<p>司机端：登录—-进行身份认证(身份证、驾驶证)（通过云服务实现）—-开始接单—-抢单—-前往代驾地点、开始代驾—-代驾结束—-发送账单给乘客</p>
+<p>管理员端：创建司机人脸识别模型，生成支付账单(例如：高速费、停车费、规则引擎)，发送账单信息给司机</p>
+<h2 id="5-导入微服务模块："><a href="#5-导入微服务模块：" class="headerlink" title="5.导入微服务模块："></a>5.导入微服务模块：</h2><p>1.使用idea打开项目<br>2.修改maven和jdk(17)环境<br>3.下载依赖(需要很长时间)</p>
+<h4 id="项目下文件夹的功能："><a href="#项目下文件夹的功能：" class="headerlink" title="项目下文件夹的功能："></a>项目下文件夹的功能：</h4><p><strong>common</strong>:				  公共的工具类和配置<br><strong>model</strong>：					项目中相关的实体类<br><strong>server-gateway</strong>:     微服务的网关模块<br><strong>service</strong>:					 远程调用<br><strong>service-client</strong>: 		远程调用接口的定义<br><strong>web</strong>:<br>            web-customer:用户端<br>            web-driver:司机端<br>            web-mgr:管理员<br><strong>资料</strong>：里面都是.yaml文件，后面会用到spring cloud和阿里巴巴里面的(纳扣死)作为配置中心，然后把这些.yaml都创建到配置中心里面，读取配置中心里面的内容来完成相关的操作。</p>
+<h5 id="web、service、service-client三者的关系："><a href="#web、service、service-client三者的关系：" class="headerlink" title="web、service、service-client三者的关系："></a>web、service、service-client三者的关系：</h5><p>项目的入口是web，web通过远程调用service的接口进行具体操作，service-client对service的接口进行初始化定义。</p>
+<h1 id="二、开发环境准备"><a href="#二、开发环境准备" class="headerlink" title="二、开发环境准备"></a>二、开发环境准备</h1><h2 id="1-前端环境"><a href="#1-前端环境" class="headerlink" title="1.前端环境"></a>1.前端环境</h2><h3 id="1-1注册微信开发者账号"><a href="#1-1注册微信开发者账号" class="headerlink" title="1.1注册微信开发者账号"></a>1.1注册微信开发者账号</h3><p>虽然开发微信小程序可以使用微信提供的测试号，但是测试号提供的功能非常有限，而且不能真机调试。因此，我们必须申请微信开发者账号，个人申请和使用微信开发者账号都是免费的。如果是商用的小程序，那么就要以企业身份申请微信开发者账号，而且还要缴纳认证费用。</p>
+<ol>
+<li>百度搜索微信公众号平台</li>
+<li>点击右上角的立即注册按钮，注册开发者账号</li>
+<li>选择的注册账号类型为小程序</li>
+<li>按照页面的提示填写相关的信息</li>
+<li>填写完注册信息之后，完成注册，进行登录</li>
+<li>填写小程序类目（重要）：选择交通服务-代驾服务</li>
+</ol>
+<h3 id="1-2开通服务和插件"><a href="#1-2开通服务和插件" class="headerlink" title="1.2开通服务和插件"></a>1.2开通服务和插件</h3><h4 id="1-2-1获取appid和app密钥"><a href="#1-2-1获取appid和app密钥" class="headerlink" title="1.2.1获取appid和app密钥"></a>1.2.1获取appid和app密钥</h4><p>开发–开发管理–开发设置–开发者ID</p>
+<h4 id="1-2-2开通地理位置"><a href="#1-2-2开通地理位置" class="headerlink" title="1.2.2开通地理位置"></a>1.2.2开通地理位置</h4><p>开发–开发管理–接口设置–地理设置</p>
+<h4 id="1-2-3开通小程序插件"><a href="#1-2-3开通小程序插件" class="headerlink" title="1.2.3开通小程序插件"></a>1.2.3开通小程序插件</h4><p>设置–第三方设置（开通微信同声传译、腾讯位置服务地图选点）</p>
+<p>在浏览器输入两个地址</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://fuwu.weixin.qq.com/search?tab=3&type=&serviceType=3&page=1&kw=%E8%85%BE%E8%AE%AF%E4%BD%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%9C%B0%E5%9B%BE%E9%80%89%E7%82%B9">https://fuwu.weixin.qq.com/search?tab=3&amp;type=&amp;serviceType=3&amp;page=1&amp;kw=腾讯位置服务地图选点</a></li>
+<li><a target="_blank" rel="noopener" href="https://fuwu.weixin.qq.com/search?tab=3&type=&serviceType=3&page=1&kw=%E5%BE%AE%E4%BF%A1%E5%90%8C%E5%A3%B0%E4%BC%A0%E8%AF%91">https://fuwu.weixin.qq.com/search?tab=3&amp;type=&amp;serviceType=3&amp;page=1&amp;kw=微信同声传译</a></li>
+</ol>
+<h3 id="1-3安装Node-js环境"><a href="#1-3安装Node-js环境" class="headerlink" title="1.3安装Node.js环境"></a>1.3安装Node.js环境</h3><ol>
+<li>在官方网站下载Node.js（<a target="_blank" rel="noopener" href="https://nodejs.org/en/download%EF%BC%8916.20.2%E7%89%88%E6%9C%AC">https://nodejs.org/en/download）16.20.2版本</a></li>
+</ol>
+<h3 id="1-4安装微信开发者工具"><a href="#1-4安装微信开发者工具" class="headerlink" title="1.4安装微信开发者工具"></a>1.4安装微信开发者工具</h3><p>开发–开发工具–开发者工具(安装两次，在不同的路径下)</p>
+<h3 id="1-5使用微信开发者工具导入前端项目"><a href="#1-5使用微信开发者工具导入前端项目" class="headerlink" title="1.5使用微信开发者工具导入前端项目"></a>1.5使用微信开发者工具导入前端项目</h3><p>使用两个微信开发者工具，分别导入乘客端和司机端的前端代码<br>导入过程中，选择信任，并且在设置的安全设置中把服务端口打开</p>
+<h2 id="2-安装后端环境"><a href="#2-安装后端环境" class="headerlink" title="2.安装后端环境"></a>2.安装后端环境</h2><p>前提条件：安装好虚拟机软件、在虚拟机中安装好Linux操作系统、在Linux操作系统中安装jdk环境和docker软件</p>
+<p>CentOS7：<a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2207-02.iso">https://mirrors.aliyun.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2207-02.iso</a></p>
+<h3 id="2-1安装软件环境"><a href="#2-1安装软件环境" class="headerlink" title="2.1安装软件环境"></a>2.1安装软件环境</h3><h4 id="2-1-1安装docker"><a href="#2-1-1安装docker" class="headerlink" title="2.1.1安装docker"></a>2.1.1安装docker</h4><h4 id="2-1-2安装mysql"><a href="#2-1-2安装mysql" class="headerlink" title="2.1.2安装mysql"></a>2.1.2安装mysql</h4><ul>
+<li><p>拉取镜像：docker pull mysql:8.0.30</p>
+</li>
+<li><p>启动：docker run –name gmalldocker_mysql –restart&#x3D;always -v&#x2F;home&#x2F;ljaer&#x2F;mysql:&#x2F;var&#x2F;lib&#x2F;mysql -p3306:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -d mysql:8.0.30</p>
+</li>
+<li><p>测试mysql：进入容器：docker exec -it gmalldocker_mysql &#x2F;bin&#x2F;bash</p>
+<p>​					   登录mysql：mysql -u root -p</p>
+<p>​							  root</p>
+<p>​						退出：exit</p>
+</li>
+</ul>
+<h4 id="2-1-3安装rabbitmq"><a href="#2-1-3安装rabbitmq" class="headerlink" title="2.1.3安装rabbitmq"></a>2.1.3安装rabbitmq</h4><ul>
+<li>拉取镜像：docker pull rabbitmq:3.12.0-management</li>
+<li>启动：docker run -d –name&#x3D;rabbitmq –restart&#x3D;always -p 5672:5672 -p 15672:15672 rabbitmq:3.12.0-management</li>
+<li>安装延迟队列插件<ol>
+<li>首先下载rabbitmq_delayed_message_exchange-3.12.0.ez文件(真让我好找啊！)，上传到RabbitMQ所在的服务器，下载地址：<a target="_blank" rel="noopener" href="https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases">https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases</a></li>
+<li>切换到插件所在目录，执行docker cp rabbitmq_delayed_message_exchange-3.12.0.ez rabbitmq:&#x2F;plugins命令，将刚下载的插件拷贝到容器内plugins目录下</li>
+<li>执行docker exec -it rabbitmq &#x2F;bin&#x2F;bash 命令进入到容器内部，执行cd plugins进入plugins目录</li>
+<li>执行ls -l|grep delay命令查看插件是否copy成功</li>
+<li>在容器内plugins目录下，执行rabbitmq-plugins enable rabbitmq_delayed_message_exchange命令启用插件</li>
+<li>exit命令退出RabbitMQ容器内部，然后执行docker restart rabbitmq命令重启RabbitMQ容器</li>
+</ol>
+</li>
+</ul>
+<h4 id="2-1-4安装redis"><a href="#2-1-4安装redis" class="headerlink" title="2.1.4安装redis"></a>2.1.4安装redis</h4><ul>
+<li>拉取镜像：docker pull redis:7.0.10</li>
+<li>启动：docker run –name&#x3D;gmalldocker_redis -d -p 6379:6379 –restart&#x3D;always redis</li>
+</ul>
+<h4 id="2-1-5安装nacos"><a href="#2-1-5安装nacos" class="headerlink" title="2.1.5安装nacos"></a>2.1.5安装nacos</h4><ul>
+<li><p>拉取镜像：docker pull nacos&#x2F;nacos-server:v2.1.1</p>
+</li>
+<li><p>启动：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-e MODE=standalone \</span><br><span class="line">-p 8848:8848 \</span><br><span class="line">-p 9848:9848 \</span><br><span class="line">-p 9849:9849 \</span><br><span class="line">--name nacos2.1.1 \</span><br><span class="line">--restart=always \</span><br><span class="line">nacos/nacos-server:v2.1.1</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-1-6安装minio"><a href="#2-1-6安装minio" class="headerlink" title="2.1.6安装minio"></a>2.1.6安装minio</h4><ul>
+<li><p>拉取镜像：docker pull minio&#x2F;minio</p>
+</li>
+<li><p>启动：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p 9000:9000 \</span><br><span class="line">-p 9001:9001 \</span><br><span class="line">--name=gmalldocker_minio \</span><br><span class="line">-d --restart=always \</span><br><span class="line">-e &quot;MINIO_ROOT_USER=admin&quot; \</span><br><span class="line">-e &quot;MINIO_ROOT_PASSWORD=admin123456&quot; \</span><br><span class="line">-v /home/data:/data \</span><br><span class="line">-v /home/config:/root/.minio \</span><br><span class="line">minio/minio server /data --console-address &quot;:9001&quot;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器访问<a target="_blank" rel="noopener" href="http://ip:9001/minio/login">http://IP:9001/minio/login</a></p>
+</li>
+<li><p>注意1：文件上传时，需要调整Linux服务器的时间与Windows的时间一致！</p>
+<p>如果不一致，进行如下操作：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">安装ntp服务：yum -y install ntp</span><br><span class="line">开启开机启动服务：systemctl enable ntpd</span><br><span class="line">启动服务：systemctl start ntpd</span><br><span class="line">更改时区：timedatectl set-timezone Asia/Shanghai</span><br><span class="line">启用ntp同步：timedatectl set-ntp yes</span><br><span class="line">同步时间：ntpq -p</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意2：如果虚拟机中的火狐浏览器无法连接网络，那就看看是不是虚拟机的ipv4与本机的ipv4不在同一个网关下。</p>
+</li>
+</ul>
+<h3 id="2-2导入数据库"><a href="#2-2导入数据库" class="headerlink" title="2.2导入数据库"></a>2.2导入数据库</h3><p>使用navicat连接MySQL数据库，注意连接的是虚拟机中的MySQL数据库，不是本机的。<img src="https://myfirst-bucket1.oss-cn-beijing.aliyuncs.com/hexo-picture/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-06%20195545.png"></p>
+<p>doupon：优惠券、dispatch：定时任务。</p>
+<h3 id="2-3导入项目中的配置文件到Nacos配置中心"><a href="#2-3导入项目中的配置文件到Nacos配置中心" class="headerlink" title="2.3导入项目中的配置文件到Nacos配置中心"></a>2.3导入项目中的配置文件到Nacos配置中心</h3><ul>
+<li>Nacos组件：注册中心和配置中心</li>
+</ul>
+<h3 id="2-4启动项目进行测试"><a href="#2-4启动项目进行测试" class="headerlink" title="2.4启动项目进行测试"></a>2.4启动项目进行测试</h3>
     
 
     
@@ -407,31 +576,33 @@
 
 
 
-<section id="comments">
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname =
-    'true'; // required: replace example with your forum shortname
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function () {
-      var dsq = document.createElement('script');
-      dsq.type = 'text/javascript';
-      dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
 
+
+
+  
+  <div id="gitment-ctn"></div>
+  
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
+  
+  <script>
+    <!-- id: "乐尚代驾微服务项目" -->
+    var gitment = new Gitment({
+      id: "20241225222232",
+      owner: 'Ruyang1',
+      repo: 'yilia-plus-demo',
+      oauth: {
+        client_id: 'Ov23liID9CV1x3c2cTV8',
+        client_secret: '1fe23c4ec006f1eec4b50420ed68605eeb7a2705',
+      },
+    })
+    gitment.render('gitment-ctn')
   </script>
-  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by
-      Disqus.</a></noscript>
-</section>
 
 
-
-
-
+  
 
 
 
@@ -442,7 +613,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023-2024 <a href="http://example.com/" target="_blank">阿阳</a>
+    		&copy; 2023-2025 <a href="http://example.com/" target="_blank">阿阳</a>
     	</div>
       	<div class="footer-right">
 			
@@ -597,16 +768,6 @@
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="https://zhousiwei.gitee.io/ibooks/" target="_blank" 
-                class="search-title" title="记录工作和学习过程中的笔记：Java、前端开发、Hexo博客、聚合支付、Linux笔记、ElasticSearch、ELK日志分析">
-                
-                  <img src="https://zhousiwei.gitee.io/ibooks/favicon.ico">
-                
-                技术笔记
-              </a>
-            </li>
-          
-            <li class="search-li">
               <a href="https://github.com/Ruyang1" target="_blank" 
                 class="search-title" >
                 
@@ -732,6 +893,56 @@
   
   <!-- <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="/plugins/ribbon.js/ribbon.min.js"></script> -->
   
+  
+    <script type="text/javascript" src="/plugins/live2d-widget.js/L2Dwidget.min.js"></script>
+<script type="text/javascript">
+  /**
+   * 完整配置请参考：https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html#instance-method-init
+   */
+  var pluginModelPath = "assets/", // 模型的文件路径，无需更改
+    pluginRootPath = "/live2d_models/"; // 插件的路径，无需更改
+  //特定的模型json文件名称
+  var modelPathJson = {
+    "epsilon2_1": "Epsilon2.1",
+    "gf": "Gantzert_Felixander",
+    "haru/01": "haru01",
+    "haru/02": "haru02",
+    "nietzsche": "nietzche"
+  }
+
+  
+    var modelName = "hibiki";
+  
+
+  var modelJsonPath = "";
+  if (modelPathJson[modelName]) {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelPathJson[modelName] +
+      ".model.json";
+  } else {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelName + ".model.json";
+  }
+  L2Dwidget.init({
+    model: {
+      jsonPath: modelJsonPath
+    },
+    display: {
+       position: "right", 
+       width: 145, 
+       height: 315, 
+       hOffset: 50, 
+      
+    },
+    mobile: {
+       show: false, 
+       scale: 0.6 
+    },
+    react: {
+       opacity: 0.8 
+    }
+  })
+
+</script>
+
   
   
 </body>
