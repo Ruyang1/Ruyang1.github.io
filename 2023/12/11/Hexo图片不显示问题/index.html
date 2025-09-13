@@ -256,22 +256,22 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="背景1："><a href="#背景1：" class="headerlink" title="背景1："></a>背景1：</h1><p>我的博客是通过Hexo框架搭建的，在使用博客初期的时候，在一个.md文件中添加的图片，但是“hexo s”开启服务，在浏览器网址栏输入”local host：4000“之后，页面中并没有显示图片。即使”hexo d“部署完成之后，进入自己的博客地址也没有显示图片。</p>
+    <h1><span id="背景1">背景1：</span></h1><p>我的博客是通过Hexo框架搭建的，在使用博客初期的时候，在一个.md文件中添加的图片，但是“hexo s”开启服务，在浏览器网址栏输入”local host：4000“之后，页面中并没有显示图片。即使”hexo d“部署完成之后，进入自己的博客地址也没有显示图片。</p>
 <span id="more"></span>
 
-<h1 id="解决方式一："><a href="#解决方式一：" class="headerlink" title="解决方式一："></a>解决方式一：</h1><p>1.修改博客配置<br>2.下载插件</p>
-<h3 id="1-修改博客配置："><a href="#1-修改博客配置：" class="headerlink" title="1.修改博客配置："></a>1.修改博客配置：</h3><p>修改博客根目录（即blog目录下）中”_config.yml”文件的配置项”post_asset_folder”的值为”true”（即”<strong>post_asset_folder&#x3D; true</strong>“）。注意&#x3D;和true之间有个空格。</p>
+<h1><span id="解决方式一">解决方式一：</span></h1><p>1.修改博客配置<br>2.下载插件</p>
+<h3><span id="1修改博客配置">1.修改博客配置：</span></h3><p>修改博客根目录（即blog目录下）中”_config.yml”文件的配置项”post_asset_folder”的值为”true”（即”<strong>post_asset_folder&#x3D; true</strong>“）。注意&#x3D;和true之间有个空格。</p>
 <p>完成此设置之后，当我在博客根目录下通过”hexo new 文件名”新建博客之后，会产生一个和文件名同名的文件夹。</p>
 <img src="/2023/12/11/Hexo%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/image-20231211191624123.png" alt="image-20231211191624123" style="zoom: 67%;">
 
-<h3 id="2-下载插件："><a href="#2-下载插件：" class="headerlink" title="2.下载插件："></a>2.下载插件：</h3><p>在博客根目录下使用npm安装插件：</p>
+<h3><span id="2下载插件">2.下载插件：</span></h3><p>在博客根目录下使用npm安装插件：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 
-<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>这时候，当.md文件需要添加图片时，只需要提前将图片添加到同名的文件夹中，然后通过相对路径索引到该图片。这样浏览器就能正常显示图片了。</p>
+<h1><span id="总结">总结：</span></h1><p>这时候，当.md文件需要添加图片时，只需要提前将图片添加到同名的文件夹中，然后通过相对路径索引到该图片。这样浏览器就能正常显示图片了。</p>
 <p>例如上面修改博客配置的那张图的索引为：</p>
 <p><img src="/2023/12/11/Hexo%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/image-20231211192049073.png" alt="image-20231211192049073"></p>
 <p>接下来使用”hexo s”开启服务，localhost:4000就能征程显示图片。</p>
-<h1 id="背景2："><a href="#背景2：" class="headerlink" title="背景2："></a>背景2：</h1><p>博文数量增加之后，我发现”source&#x2F;_posts”路径下的.md文件和同名文件夹都挤在一起，就像上面修改博客配置的那张图中显示的那样，既有文件又有文件夹，给我感觉很乱。所以我从别人那里打听到一个优化的方法（<strong>搭建阿里云图床+typora配置实现对象存储</strong>）。只不过需要花一点小钱且需要联网才能显示图片。</p>
+<h1><span id="背景2">背景2：</span></h1><p>博文数量增加之后，我发现”source&#x2F;_posts”路径下的.md文件和同名文件夹都挤在一起，就像上面修改博客配置的那张图中显示的那样，既有文件又有文件夹，给我感觉很乱。所以我从别人那里打听到一个优化的方法（<strong>搭建阿里云图床+typora配置实现对象存储</strong>）。只不过需要花一点小钱且需要联网才能显示图片。</p>
 <p>太麻烦了，我懒得写。这里是其他人写的：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://blog.csdn.net/qq_61228493/article/details/129869433</span><br></pre></td></tr></table></figure>
 
