@@ -10,13 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="article">
+  <meta name="description" content="PyCharm中格式化代码快捷键：Alt+Ctrl+L">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Python入门笔记">
 <meta property="og:url" content="http://example.com/2025/09/13/Python%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="阿阳的博客">
+<meta property="og:description" content="PyCharm中格式化代码快捷键：Alt+Ctrl+L">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-09-13T12:48:35.000Z">
-<meta property="article:modified_time" content="2025-09-13T12:50:37.426Z">
+<meta property="article:modified_time" content="2025-09-16T12:15:01.942Z">
 <meta property="article:author" content="阿阳">
 <meta name="twitter:card" content="summary">
   
@@ -75,6 +77,9 @@
 			
 			</ul>
 		</nav>
+    <nav>
+      总文章数 9
+    </nav>
 		<nav class="header-smart-menu">
 			
 				
@@ -108,11 +113,6 @@
 												title="CSDN" ><i class="icon-csdn"></i></a>
 					
 				
-					
-						<a class="twitter" href="/null"
-												title="twitter" ><i class="icon-twitter"></i></a>
-					
-				
 			</div>
 		
 			
@@ -120,7 +120,7 @@
 			
 			
 			<div>
-				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1817344764&auto=1&height=66"></iframe>
+				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=509720124&auto=1&height=66"></iframe>
 			</div>
 			
 				
@@ -175,11 +175,6 @@
 							href="https://blog.csdn.net/m0_63755563" title="CSDN"><i class="icon-csdn"></i></a>
 						
 					
-						
-						<a class="twitter" target="_blank" 
-							href="/null" title="twitter"><i class="icon-twitter"></i></a>
-						
-					
 				</div>
 			</nav>
 
@@ -215,8 +210,24 @@
   
 
 
+  <!--显示阅读次数-->
+  
+    <br/>
+    <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+    <span class="icon-sort"></span>
+    <span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+    	阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+    </span>
+    </a>
+  
+  <!--显示阅读次数完毕-->
   
   
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2025/09/13/Python%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/" class="archive-article-date">
         <time datetime="2025-09-13T12:48:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-09-13</time>
 </a>
@@ -231,7 +242,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">238字</span>
     </span>
   </span>
 
@@ -251,7 +262,35 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <span id="more"></span>
+    <p>PyCharm中格式化代码快捷键：<strong>Alt+Ctrl+L</strong></p>
+<span id="more"></span>
+
+<p>1.print()的使用</p>
+<p>Python中拼接字符串，使用逗号（,）进行拼接操作。与java不同，java是通过“+”进行拼接。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#例如：</span></span><br><span class="line">name = <span class="string">&quot;ry&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;我的名字叫&quot;</span>,name)</span><br><span class="line"><span class="comment">#打印出来的结果是：我的名字叫 ry</span></span><br><span class="line"><span class="comment">#注意：两个内容之间有一个空格，因为sep参数默认为sep=&quot; &quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>print()函数</strong>：有2个默认参数：<strong>sep</strong>和<strong>end</strong>，</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>默认值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>sep</strong></td>
+<td>sep&#x3D;” “（注意：双引号中有一个空格）</td>
+<td>设置被逗号隔开的多个内容，他们之间的分隔符。</td>
+</tr>
+<tr>
+<td><strong>end</strong></td>
+<td>end&#x3D;”\n”</td>
+<td>设置print打印结束之后所执行的操作。</td>
+</tr>
+</tbody></table>
+<p><strong>input()函数</strong>：用户输入的任何内容，在Python中都被视为字符串。<br>注意：函数中可以传入字符串形式的参数，目的是告诉用户要输入什么东西。当然也可以不填内容，非强制。</p>
+
     
 
     
@@ -284,7 +323,7 @@
     
 
     
-    <div class="declare"> 
+    <div class="declare">
       <ul class="post-copyright">
         <li>
           <strong>本文作者：</strong>
@@ -453,6 +492,18 @@
   </div>
 
   
+	<script src="/lib/busuanzi.pure.js"></script>
+	
+  
+  
+	
+	<span id="busuanzi_container_site_pv" style="display:none">
+		本站总访问量<span id="busuanzi_value_site_pv"></span>次
+	        <span class="post-meta-divider" >|</span>
+	</span>
+  	<span id="busuanzi_container_site_uv" style='display:none'>
+  		本站访客数<span id="busuanzi_value_site_uv"></span>人
+  	</span>
   
 </footer>
 
