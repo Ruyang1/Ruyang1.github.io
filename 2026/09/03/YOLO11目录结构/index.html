@@ -6,21 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>YOLO11目录结构 | 阿阳的博客</title>
+  <title>YOLO11源码运行 | 阿阳的博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="YOLO11目录结构">
+  <meta name="description" content="YOLO11源码运行[TOC]">
 <meta property="og:type" content="article">
-<meta property="og:title" content="YOLO11目录结构">
+<meta property="og:title" content="YOLO11源码运行">
 <meta property="og:url" content="http://example.com/2026/09/03/YOLO11%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="阿阳的博客">
-<meta property="og:description" content="YOLO11目录结构">
+<meta property="og:description" content="YOLO11源码运行[TOC]">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://myfirst-bucket1.oss-cn-beijing.aliyuncs.com/hexo-picture/image-20260903151643364.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Ruyang1/PicGo-tuChuang/master/test/image-20260903160819674.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Ruyang1/PicGo-tuChuang/master/test/image-20260905161735062.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Ruyang1/PicGo-tuChuang/master/test/image-20260905171345814.png">
 <meta property="article:published_time" content="2026-09-03T07:13:44.000Z">
-<meta property="article:modified_time" content="2026-09-03T08:08:28.163Z">
+<meta property="article:modified_time" content="2026-09-06T10:53:36.831Z">
 <meta property="article:author" content="阿阳">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://myfirst-bucket1.oss-cn-beijing.aliyuncs.com/hexo-picture/image-20260903151643364.png">
@@ -208,7 +209,7 @@
   
   
     <h1 class="article-title" itemprop="name">
-      YOLO11目录结构
+      YOLO11源码运行
     </h1>
   
 
@@ -245,7 +246,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">198字</span>
+      <span class="post-count">2.1k字</span>
     </span>
   </span>
 
@@ -254,7 +255,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">8分</span>
     </span>
   </span>
 </div>
@@ -265,9 +266,11 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1><span id="yolo11目录结构">YOLO11目录结构</span></h1><span id="more"></span>
+    <h1><span id="yolo11源码运行">YOLO11源码运行</span></h1><p>[TOC]</p>
+<span id="more"></span>
 
-<p><img src="https://myfirst-bucket1.oss-cn-beijing.aliyuncs.com/hexo-picture/image-20260903151643364.png" alt="image-20260903151643364"></p>
+<img src="https://myfirst-bucket1.oss-cn-beijing.aliyuncs.com/hexo-picture/image-20260903151643364.png" alt="image-20260903151643364">
+
 <table>
 <thead>
 <tr>
@@ -300,7 +303,90 @@
 <td>存放模型权重文件的文件夹，例如yolo11n.pt、yolo11m.pt等。</td>
 </tr>
 </tbody></table>
-<p><img src="https://raw.githubusercontent.com/Ruyang1/PicGo-tuChuang/master/test/image-20260903160819674.png" alt="image-20260903160819674"></p>
+<h2><span id="连接远程云服务器autodl">连接远程云服务器（AutoDL）</span></h2><p>1.先去算力市场，按量计费购买一个云服务器，选择好对应的<code>Pytorch、Python、Canda</code>版本。</p>
+<p>2.在vscode中，远程连接云服务器，使用登陆指令和密码连接。连接上之后，立马去安装Python扩展（因为安装的比较慢），安装完Python扩展之后，随便打开一个.py文件，这时候能看到右下角有一个<code>select python Interaction</code>的选项，记得选conda版本的python。</p>
+<p>3.将本地的代码、数据集上传到云服务器中，建议通过第三方软件进行传输。</p>
+<p>4.在vscode中打开云服务器中刚刚传输的代码。</p>
+<p>5.<code>yolo</code> 命令是 <code>ultralytics</code> 包提供的 CLI 工具，要先安装ultralytics依赖，不然会报错’<code>yolo: command not found</code>。（建议在第二步就安装该依赖，安装太慢了，科学上网也不好使）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install ultralytics  #安装ultralytics依赖</span><br><span class="line">conda list  #查看所有依赖</span><br></pre></td></tr></table></figure>
+
+<h2><span id="如何在yolo11中训练vicdrone数据集">如何在YOLO11中训练VicDrone数据集</span></h2><p>1.首先先下载<code>VicDrone</code>数据集(<a target="_blank" rel="noopener" href="https://www.kaggle.com/)%EF%BC%8C%E9%9C%80%E8%A6%81%E7%99%BB%E5%BD%95%E8%B0%B7%E6%AD%8C%E8%B4%A6%E5%8F%B7%E6%89%8D%E8%83%BD%E4%B8%8B%E8%BD%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E3%80%82%E4%B8%8B%E8%BD%BD%E5%A5%BD%E8%A7%A3%E5%8E%8B%E4%B9%8B%E5%90%8E%E5%BA%94%E8%AF%A5%E6%98%AF%E4%B8%8B%E5%9B%BE%E6%A0%BC%E5%BC%8F%E3%80%82">https://www.kaggle.com/)，需要登录谷歌账号才能下载数据集。下载好解压之后应该是下图格式。</a></p>
+<img src="https://raw.githubusercontent.com/Ruyang1/PicGo-tuChuang/master/test/image-20260905161735062.png" alt="image-20260905161735062" style="zoom:80%;">
+
+<p>2.根据自己<code>VisDrone</code>数据集的位置配置好<code>visdrone.yaml</code>中的数据集路径。</p>
+<p>3.编写<code>train-visdrone.py</code>训练脚本，这样可以省去每次在终端运行yolo命令。</p>
+<h4><span id="报错处理">报错处理：</span></h4><p><strong>eg1：</strong><code>RuntimeError: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED</code><br>           报这个错误信息，大概率是因为租的云服务器显存不足，因为我训练的时候，Epoch正在运行途中报错了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Logging results to /root/autodl-tmp/ultralytics-8.3.250/runs/detect/vicdrone3</span><br><span class="line">Starting training for 100 epochs...</span><br><span class="line"></span><br><span class="line">      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size</span><br><span class="line">      1/100      3.58G      1.892      4.478      1.212       1470        640: 1% ──────────── 6/405 4.3it/s 5.3s&lt;1:32</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/root/autodl-tmp/ultralytics-8.3.250/vicdrone.py&quot;, line 10, in &lt;module&gt;</span><br><span class="line">    results = model.train(</span><br><span class="line">  …………………………………………</span><br><span class="line">  File &quot;/root/miniconda3/lib/python3.10/site-packages/torch/autograd/__init__.py&quot;, line 251, in backward</span><br><span class="line">    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass</span><br><span class="line">RuntimeError: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED</span><br></pre></td></tr></table></figure>
+
+<p>通过将<code>RTX2080Ti(11GB)</code>显存换成<code>RTX4090D(24GB)</code>显存之后就正常运行了。</p>
+<p><img src="https://raw.githubusercontent.com/Ruyang1/PicGo-tuChuang/master/test/image-20260905171345814.png" alt="image-20260905171345814"></p>
+<h1><span id="重要通知现在基于yolo模型创新的论文很难发sci大多数只能发会议期刊">重要通知：现在基于YOLO模型创新的论文很难发sci，大多数只能发会议期刊。</span></h1><h2><span id="一-这个现象在-20252026-年很普遍主要原因如下">一、这个现象在 2025–2026 年很普遍，主要原因如下：</span></h2><table>
+<thead>
+<tr>
+<th>贡献被归为[plug-and-play]</th>
+<th>绝大多数 YOLO 改论文的套路是「换注意力模块 + 换 loss + 改 neck + 加个 head」,本质是模块拼接,没有可验证的机制洞察(mechanism)。顶会(CVPR&#x2F;ICCV&#x2F;ECCV&#x2F;TPAMI)审稿人一眼能看穿这是 engineering 而非 science。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>被海量低质量论文透支</td>
+<td>MDPI 的 <em>Remote Sensing</em> &#x2F; <em>Electronics</em> &#x2F; <em>Applied Sciences</em>、IEEE Access 等大量同质化 YOLO 变体论文,让「YOLO + 遥感&#x2F;红外 + 改模块」成了刻板印象的「水论文模板」。结果就是哪怕是认真做的,也容易被连带误伤。</td>
+</tr>
+<tr>
+<td>审稿人的默认假设</td>
+<td>用 YOLO 当 baseline 没关系,但「你的贡献本身就是 YOLO 改版」会被默认认为创新不足。区分点在于——<strong>baseline 是谁不重要,novelty 在哪才重要。</strong></td>
+</tr>
+</tbody></table>
+<h2><span id="二-小目标检测的代替模型非yolo">二、小目标检测的代替模型（非YOLO）</span></h2><h3><span id="1-detr-家族-现在最主流的替代方向">1. DETR 家族 —— 现在最主流的替代方向</span></h3><p>搜索结果显示,2025–2026 年小目标检测的论文基本都转向了 <strong>RT-DETR</strong> 作为基线(实时速度接近 YOLO,又是 end-to-end、NMS-free 的 set prediction,「血统」比 YOLO 干净)。大量新工作就是它的变体:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S1051200426004641">CDFF-DETR</a> —— 跨尺度双特征融合金字塔 + P2 层,APtiny 提升 &gt;4%,参数降 38%</li>
+<li><a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0925231226010301">FA-DETR</a> —— 特征增强 + 自适应融合,针对 UAV 小目标</li>
+<li><a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41598-026-60439-4">MicroSight-DETR</a> —— 用 Mamba 做 backbone 的实时微型目标检测</li>
+<li><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/11456127">RSRT-DETR</a> —— 极坐标注意力 + 多尺度超图,遥感密集小目标</li>
+<li><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/11578089">DAL-DETR</a> &#x2F; <a target="_blank" rel="noopener" href="https://doaj.org/article/e3046100979b4f73b938c3b969c49072">IR-DETR</a> —— 轻量化 + 红外小目标</li>
+</ul>
+<p>共同套路:加 <strong>P2 高分辨率检测层</strong>、多尺度&#x2F;双域特征融合、专用 IoU loss。本质上和 YOLO 改法很像,但因为骨架换成了 DETR,审稿人观感好很多。</p>
+<h3><span id="2-两阶段检测器经典但仍在用">2. 两阶段检测器(经典但仍在用)</span></h3><ul>
+<li><strong>Faster R-CNN &#x2F; Cascade R-CNN</strong>:精度导向任务(遥感、病理、工业质检)里仍是硬 baseline,尤其配合 FPN&#x2F;特征增强时小目标鲁棒性好。</li>
+<li><strong>Mask R-CNN</strong>:需要分割辅助时。</li>
+</ul>
+<h3><span id="3-anchor-free-一族">3. Anchor-free 一族</span></h3><ul>
+<li><strong>FCOS、CenterNet、RepPoints、CornerNet</strong>:无锚点、点基,曾是小目标改进的热门载体,现在多数被 DETR 取代,但作为对照 baseline 仍常见。</li>
+</ul>
+<h3><span id="4-与具体检测器无关的小目标方法更通用反而好发">4. 与具体检测器无关的小目标方法(更「通用」,反而好发)</span></h3><p>这类不绑死在某个网络结构上,是审稿人更认的「方法级」贡献:</p>
+<ul>
+<li><strong>SAHI &#x2F; slicing 推理</strong>:切图再推理,纯 inference 端,几乎白拿小目标 AP。</li>
+<li><strong>超分辨率 &#x2F; 生成式增强</strong>:如 Perceptual GAN,把小目标放大再检测。</li>
+<li><strong>NWD (Normalized Wasserstein Distance)</strong>:针对 tiny object 的定位度量&#x2F;loss,和 IoU 敏感性问题直接挂钩,机制清楚。</li>
+<li><strong>QueryDet</strong>:级联查询,高分辨率层只查少量候选。</li>
+<li><strong>上下文&#x2F;关系建模</strong>:Relation Network 等。</li>
+</ul>
+<h3><span id="5-更前沿的范式20252026-值得关注">5. 更前沿的范式(2025–2026 值得关注)</span></h3><ul>
+<li><strong>Diffusion 检测</strong>:DiffusionDet 等,把检测建模成去噪过程。</li>
+<li><strong>开放词汇 &#x2F; 大模型</strong>:Grounding DINO、SAM 2 辅助检测,蹭 LLM&#x2F;VLM 趋势。</li>
+<li><strong>DINOv3 自监督预训练 + 检测头</strong>:搜索结果里的 Neck-Free DETR 就是这么做的,属于「新 backbone + 新预训练」的包装。</li>
+</ul>
+<h2><span id="三-建议改成detr模型">三、建议改成DETR模型</span></h2><h3><span id="detr演化时间线读论文的顺序">DETR演化时间线（读论文的顺序）</span></h3><ol>
+<li><strong>DETR</strong>(2020, FAIR)：开山之作。用 ResNet + Transformer,500 epoch 才收敛,小目标差(因为只用了最低分辨率的单尺度特征、query 冷启动慢)。看这篇主要是理解思想,别纠结它的性能。</li>
+<li><strong>Deformable DETR</strong>(2021)：引入<strong>可变形注意力</strong>(只采样少量关键点,不用全局 attention)+ <strong>多尺度特征</strong>(P3–P5)。收敛从 500 epoch 砍到 50,小目标大幅改善。<strong>这篇是小目标方向必读</strong>。</li>
+<li><strong>DAB-DETR &#x2F; DN-DETR</strong>(2022)：DAB 把 query 显式编码成 (x,y,w,h) 坐标(不再是隐式向量);DN 用「去噪训练」稳定匹配、加速收敛。</li>
+<li><strong>DINO</strong>(2022)：综合以上 + 对比去噪 + 混合 query 选择,一度是检测 SOTA。</li>
+<li><strong>RT-DETR</strong>(2023,百度)：实时 DETR,hybrid encoder + 不确定性最小 query 选择,速度和 YOLO 持平。<strong>这就是现在小目标论文的事实标准 baseline</strong>,搜到的那一堆 <code>xxx-DETR</code> 基本都基于它(尤其 RT-DETR-r18 轻量版)。之后还有 RT-DETRv2&#x2F;v3(2024–2025)继续迭代。</li>
+</ol>
+<h3><span id="detr学习路径">DETR学习路径</span></h3><p><strong>第 1 步 — 建心智模型(1–2 天)</strong> </p>
+<p>读 DETR 官方博客(FAIR 出的「DETR 解读」),配合那篇著名的中文图解系列(搜「DETR 大白话」或「源码解析」)，不用抠代码。</p>
+<p><strong>第 2 步 — 精读 Deformable DETR(2–3 天)</strong> </p>
+<p>重点看可变形注意力怎么省计算、多尺度特征怎么接入。<strong>这一步直接关系你小目标方向</strong>,因为 DETR 对小目标从「差」变「能用」就是靠它。</p>
+<p><strong>第 3 步 — 上手 RT-DETR(1 周)</strong> </p>
+<p>代码二选一:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/PaddleDetection">PaddleDetection</a>(官方)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdetection">mmdetection</a>(生态全,RT-DETR 和一堆 DETR 变体都有)</li>
+<li>想要最轻量、和 Ultralytics 类似体验,可看 HuggingFace Transformers 里的 <code>DetrImageProcessor</code> &#x2F; <code>AutoModelForObjectDetection</code> 先玩起来。</li>
+</ul>
+<p><strong>第 4 步 — 跑通 + 改一个东西</strong></p>
+<p> 在 RT-DETR 上复现一篇你搜到的 <code>xxx-DETR</code> 小目标论文(比如加 P2 层那几篇),你就把「query 数量」「多尺度层」「loss」都摸熟了。</p>
+<p><strong>建议的论文阅读顺序</strong>：</p>
+<p><em><strong>DETR → Deformable DETR → DINO → RT-DETR</strong></em>,四篇精读就够搭起框架了,剩下的变体都是在这几篇上做加法。</p>
 
     
 
@@ -342,7 +428,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/2026/09/03/YOLO11目录结构/" title="YOLO11目录结构" target="_blank">http://example.com/2026/09/03/YOLO11目录结构/</a>
+          <a href="http://example.com/2026/09/03/YOLO11目录结构/" title="YOLO11源码运行" target="_blank">http://example.com/2026/09/03/YOLO11目录结构/</a>
         </li>
         
         <li>
@@ -467,7 +553,7 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "YOLO11目录结构" -->
+    <!-- id: "YOLO11源码运行" -->
     var gitment = new Gitment({
       id: "20260903151344",
       owner: 'Ruyang1',
